@@ -9,14 +9,12 @@ import Foundation
 import AVFoundation
 import UIKit
 
-// Copy paste from StackOverflow: https://stackoverflow.com/questions/28487146/how-to-add-live-camera-preview-to-uiview
+// StackOverflow link: https://stackoverflow.com/questions/28487146/how-to-add-live-camera-preview-to-uiview
 
 final class Scanner: UIView {
-
     private lazy var videoDataOutput: AVCaptureVideoDataOutput = {
         let v = AVCaptureVideoDataOutput()
         v.alwaysDiscardsLateVideoFrames = true
-        v.setSampleBufferDelegate(self, queue: videoDataOutputQueue)
         v.connection(with: .video)?.isEnabled = true
         return v
     }()
@@ -24,16 +22,17 @@ final class Scanner: UIView {
     private let videoDataOutputQueue: DispatchQueue = DispatchQueue(label: "JKVideoDataOutputQueue")
     private lazy var previewLayer: AVCaptureVideoPreviewLayer = {
         let l = AVCaptureVideoPreviewLayer(session: session)
-        l.videoGravity = .resizeAspect
+        l.videoGravity = .resizeAspectFill
         return l
     }()
 
     private let captureDevice: AVCaptureDevice? = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
     private lazy var session: AVCaptureSession = {
         let s = AVCaptureSession()
-        s.sessionPreset = .vga640x480
         return s
     }()
+    
+    private let metadataOutput: AVCaptureMetadataOutput = AVCaptureMetadataOutput()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,7 +47,7 @@ final class Scanner: UIView {
     }
 
     private func commonInit() {
-        contentMode = .scaleAspectFit
+        contentMode = .scaleToFill
         beginSession()
     }
 
@@ -68,6 +67,16 @@ final class Scanner: UIView {
             layer.masksToBounds = true
             layer.addSublayer(previewLayer)
             previewLayer.frame = bounds
+            print("starting session")
+            
+            guard session.canAddOutput(metadataOutput) else {
+                print("cannot add metadata as catpureSession output");
+                return
+            }
+            session.addOutput(metadataOutput)
+            metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+            metadataOutput.metadataObjectTypes = [.ean13]
+            
             session.startRunning()
         } catch let error {
             debugPrint("\(self.self): \(#function) line: \(#line).  \(error.localizedDescription)")
@@ -80,4 +89,21 @@ final class Scanner: UIView {
     }
 }
 
-extension Scanner: AVCaptureVideoDataOutputSampleBufferDelegate {}
+extension Scanner: AVCaptureMetadataOutputObjectsDelegate {
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        print("metadata found")
+        if let first = metadataObjects.first {
+            guard let readableObject = first as? AVMetadataMachineReadableCodeObject else { return }
+            guard let stringValue = readableObject.stringValue else { return }
+            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+            found(code: stringValue)
+        } else {
+            print("not able to read the code, please try again")
+        }
+    }
+    
+    func found(code: String) {
+        print("CODE FOUND")
+        print(code)
+    }
+}
