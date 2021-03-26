@@ -13,6 +13,8 @@
 		1CA557D9260DE08000CA33BB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CA557D8260DE08000CA33BB /* Preview Assets.xcassets */; };
 		1CA557E4260DE08000CA33BB /* BookscannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA557E3260DE08000CA33BB /* BookscannerTests.swift */; };
 		1CA557EF260DE08100CA33BB /* BookscannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA557EE260DE08100CA33BB /* BookscannerUITests.swift */; };
+		1CA5587B260E035A00CA33BB /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA5587A260E035A00CA33BB /* Scanner.swift */; };
+		1CA55880260E045700CA33BB /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA5587F260E045700CA33BB /* ScannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		1CA557EA260DE08000CA33BB /* BookscannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookscannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CA557EE260DE08100CA33BB /* BookscannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookscannerUITests.swift; sourceTree = "<group>"; };
 		1CA557F0260DE08100CA33BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1CA5587A260E035A00CA33BB /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
+		1CA5587F260E045700CA33BB /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,7 @@
 		1CA557D0260DE08000CA33BB /* Bookscanner */ = {
 			isa = PBXGroup;
 			children = (
+				1CA55879260E034F00CA33BB /* Scanner */,
 				1CA557D1260DE08000CA33BB /* BookscannerApp.swift */,
 				1CA557D3260DE08000CA33BB /* ContentView.swift */,
 				1CA557D5260DE08000CA33BB /* Assets.xcassets */,
@@ -128,6 +133,15 @@
 				1CA557F0260DE08100CA33BB /* Info.plist */,
 			);
 			path = BookscannerUITests;
+			sourceTree = "<group>";
+		};
+		1CA55879260E034F00CA33BB /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				1CA5587A260E035A00CA33BB /* Scanner.swift */,
+				1CA5587F260E045700CA33BB /* ScannerView.swift */,
+			);
+			path = Scanner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +274,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CA557D4260DE08000CA33BB /* ContentView.swift in Sources */,
+				1CA55880260E045700CA33BB /* ScannerView.swift in Sources */,
+				1CA5587B260E035A00CA33BB /* Scanner.swift in Sources */,
 				1CA557D2260DE08000CA33BB /* BookscannerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
