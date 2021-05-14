@@ -18,6 +18,7 @@ class NewBook: ObservableObject {
         category = ""
     }
     
+    // TODO: Can this be done cleaner?
     func toNewBookData() -> NewBookData {
         return NewBookData(isbn: isbn, owner: owner, category: category)
     }

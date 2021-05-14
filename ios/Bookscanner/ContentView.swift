@@ -11,7 +11,8 @@ struct ContentView: View {
     @ObservedObject var newBook = NewBook()
     
     var body: some View {
-        if newBook.isbn != "" { // FIXME: Doesnt work
+        // TODO: Clean up, use navigator with transitions etc.
+        if newBook.isbn != "" {
             BookInfo(newBook: newBook)
         } else {
             ScannerView(newBook: newBook)

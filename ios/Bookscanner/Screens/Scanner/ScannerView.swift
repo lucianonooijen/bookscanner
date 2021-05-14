@@ -8,10 +8,6 @@
 import Foundation
 import SwiftUI
 
-// Sources:
-// - https://www.avanderlee.com/swiftui/integrating-swiftui-with-uikit/
-// - https://www.answertopia.com/swiftui/integrating-uiviews-with-swiftui/
-
 class ScannerDelegateImplementation: ScannerDelegate {
     @ObservedObject var newBook: NewBook
     
@@ -25,6 +21,9 @@ class ScannerDelegateImplementation: ScannerDelegate {
     }
 }
 
+// Sources:
+// - https://www.avanderlee.com/swiftui/integrating-swiftui-with-uikit/
+// - https://www.answertopia.com/swiftui/integrating-uiviews-with-swiftui/
 struct ScannerView: UIViewRepresentable {
     @ObservedObject var newBook: NewBook
     
