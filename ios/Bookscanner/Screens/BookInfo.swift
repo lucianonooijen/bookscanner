@@ -30,7 +30,7 @@ var categoryOptions = [
 ]
 
 struct BookInfo: View {
-    @ObservedObject var newBook = NewBook()
+    @ObservedObject var newBook: NewBook
     
     var body: some View {
         NavigationView{
@@ -84,7 +84,9 @@ struct BookInfo: View {
 }
 
 struct BookInfo_Previews: PreviewProvider {
+    @ObservedObject static var newBook: NewBook = NewBook()
+    
     static var previews: some View {
-        BookInfo()
+        BookInfo(newBook: newBook)
     }
 }

@@ -12,9 +12,9 @@ struct ContentView: View {
     
     var body: some View {
         if newBook.isbn != "" { // FIXME: Doesnt work
-            BookInfo()
+            BookInfo(newBook: newBook)
         } else {
-            ScannerView()
+            ScannerView(newBook: newBook)
         }
     }
 }
