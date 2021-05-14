@@ -19,7 +19,7 @@ fn new_book(book: String) -> Status {
     };
     println!("{:?}", b);
 
-    let s = storage::Storage::new();
+    let mut s = storage::Storage::new();
     s.add_book(b);
 
     Status::Created
