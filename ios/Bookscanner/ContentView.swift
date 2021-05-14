@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var newBook = NewBook()
+    
     var body: some View {
-        ScannerView()
+        if newBook.isbn != "" { // FIXME: Doesnt work
+            BookInfo()
+        } else {
+            ScannerView()
+        }
     }
 }
 

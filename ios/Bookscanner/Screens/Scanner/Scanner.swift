@@ -8,10 +8,13 @@
 import Foundation
 import AVFoundation
 import UIKit
+import SwiftUI
 
 // StackOverflow link: https://stackoverflow.com/questions/28487146/how-to-add-live-camera-preview-to-uiview
 
 final class Scanner: UIView {
+    @ObservedObject var newBook = NewBook()
+    
     private lazy var videoDataOutput: AVCaptureVideoDataOutput = {
         let v = AVCaptureVideoDataOutput()
         v.alwaysDiscardsLateVideoFrames = true
@@ -96,7 +99,9 @@ extension Scanner: AVCaptureMetadataOutputObjectsDelegate {
             guard let readableObject = first as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            found(code: stringValue)
+            print("isbn found is \(stringValue)")
+            newBook.isbn = stringValue
+            print("newBook is \(newBook.isbn) | \(newBook.owner) | \(newBook.category)")
         } else {
             print("not able to read the code, please try again")
         }
