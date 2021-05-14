@@ -8,7 +8,7 @@
 import Foundation
 
 class ApiCalls {
-    private let server = "http://192.168.1.91:5000"
+    private let server = "http://192.168.1.91:8000"
     
     private func generateEndpointUrl(endpoint: String) -> URL {
         let url = "\(server)/\(endpoint)"

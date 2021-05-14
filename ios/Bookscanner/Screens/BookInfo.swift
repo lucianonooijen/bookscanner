@@ -18,14 +18,15 @@ var ownerOptions = [
 ]
 var categoryOptions = [
     "Software",
-    "Mathematics",
-    "Business",
-    "Sales",
+    "Philosophy",
+    "Fiction",
     "SoftSkills",
+    "Business",
+    "Mathematics",
+    "Sales",
     "Economy",
     "Politics",
     "History",
-    "Philosophy",
     "Languages"
 ]
 
