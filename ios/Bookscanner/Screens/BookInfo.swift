@@ -14,6 +14,9 @@ var ownerOptions = [
     "Luciano",
     "Chris",
     "Suzanne",
+    "Jeroen",
+    "Nick",
+    "Julian",
     "Unknown"
 ]
 var categoryOptions = [
