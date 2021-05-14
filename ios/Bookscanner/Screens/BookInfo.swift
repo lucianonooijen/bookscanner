@@ -27,7 +27,9 @@ var categoryOptions = [
     "Economy",
     "Politics",
     "History",
-    "Languages"
+    "Biography",
+    "Languages",
+    "Dictionary"
 ]
 
 struct BookInfo: View {

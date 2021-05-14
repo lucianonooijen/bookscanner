@@ -12,10 +12,9 @@ class NewBook: ObservableObject {
     @Published var owner: String = ""
     @Published var category: String = ""
     
+    // TODO: More descriptive name
     func clear() {
         isbn = ""
-        owner = ""
-        category = ""
     }
     
     // TODO: Can this be done cleaner?
