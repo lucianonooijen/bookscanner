@@ -8,7 +8,7 @@
 import Foundation
 
 class ApiCalls {
-    private let server = "http://localhost:5000"
+    private let server = "http://192.168.1.91:5000"
     
     private func generateEndpointUrl(endpoint: String) -> URL {
         let url = "\(server)/\(endpoint)"
@@ -20,19 +20,21 @@ class ApiCalls {
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-//        do {
-//            request.httpBody = try JSONEncoder().encode(book)
-//
-//            URLSession.shared.getAllTasks { (openTasks: [URLSessionTask]) in
-//               NSLog("open tasks: \(openTasks)")
-//            }
-//
-//            let task = URLSession.shared.dataTask(with: request, completionHandler: { (responseData: Data?, response: URLResponse?, error: Error?) in
-//               NSLog("\(response)")
-//            })
-//            task.resume()
-//        } catch let err {
-//            print(err)
-//        }
+        
+        do {
+            let newBookData: NewBookData = book.toNewBookData()
+            request.httpBody = try JSONEncoder().encode(newBookData)
+
+            URLSession.shared.getAllTasks { (openTasks: [URLSessionTask]) in
+               NSLog("open tasks: \(openTasks)")
+            }
+
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (responseData: Data?, response: URLResponse?, error: Error?) in
+                print("\(String(describing: response))")
+            })
+            task.resume()
+        } catch let err {
+            print(err)
+        }
     }
 }

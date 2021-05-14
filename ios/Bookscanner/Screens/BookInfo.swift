@@ -21,7 +21,7 @@ var categoryOptions = [
     "Mathematics",
     "Business",
     "Sales",
-    "Softskills",
+    "SoftSkills",
     "Economy",
     "Politics",
     "History",
@@ -31,6 +31,13 @@ var categoryOptions = [
 
 struct BookInfo: View {
     @ObservedObject var newBook: NewBook
+    
+    // TODO: This can be extracted to conform to single responsibility principle
+    func saveBook() {
+        let apiCaller = ApiCalls()
+        apiCaller.saveNewBook(book: newBook)
+        newBook.clear()
+    }
     
     var body: some View {
         NavigationView{
@@ -72,7 +79,7 @@ struct BookInfo: View {
                 
                 // Completion button
                 Section {
-                    Button(action: {print("hi")}) {
+                    Button(action: {saveBook()}) {
                         Text("Save book to server")
                     }.disabled(newBook.isbn == "" || newBook.owner == "" || newBook.category == "")
                 }
