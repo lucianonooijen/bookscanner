@@ -3,9 +3,14 @@
 
 use rocket::{post, routes};
 use rocket::http::Status;
+use std::process::Command;
 
 mod book;
 mod storage;
+
+fn play_confirm_sound() {
+    Command::new("bash").arg("-c").arg("echo -e '\\a'").spawn().expect("error playing sound");
+}
 
 #[post("/book", data = "<book>")]
 fn new_book(book: String) -> Status {
@@ -21,6 +26,8 @@ fn new_book(book: String) -> Status {
 
     let mut s = storage::Storage::new();
     s.add_book(b);
+
+    play_confirm_sound();
 
     Status::Created
 }
