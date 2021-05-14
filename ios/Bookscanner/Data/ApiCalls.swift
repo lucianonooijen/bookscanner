@@ -16,7 +16,7 @@ class ApiCalls {
     }
     
     func saveNewBook(book: NewBook) {
-        let url = generateEndpointUrl(endpoint: "addbook")
+        let url = generateEndpointUrl(endpoint: "book")
         var request = URLRequest(url: url)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"

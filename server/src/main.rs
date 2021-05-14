@@ -7,7 +7,7 @@ use rocket::http::Status;
 mod book;
 mod storage;
 
-#[post("/newbook", data = "<book>")]
+#[post("/book", data = "<book>")]
 fn new_book(book: String) -> Status {
     println!("{}", book);
     let b: book::Book = match serde_json::from_str(&book) {
