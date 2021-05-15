@@ -32,6 +32,7 @@ var categoryOptions = [
     "History",
     "Biography",
     "Languages",
+    "Loeb",
     "Dictionary"
 ]
 
