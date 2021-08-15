@@ -22,6 +22,7 @@ var ownerOptions = [
 var categoryOptions = [
     "Software",
     "Philosophy",
+    "Psychology",
     "Fiction",
     "SoftSkills",
     "Business",
