@@ -34,7 +34,8 @@ var categoryOptions = [
     "Biography",
     "Languages",
     "Loeb",
-    "Dictionary"
+    "Dictionary",
+    "Chess"
 ]
 
 struct BookInfo: View {
